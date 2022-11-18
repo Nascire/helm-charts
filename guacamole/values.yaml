@@ -40,6 +40,7 @@ guacamole:
       ingress.kubernetes.io/ssl-redirect: "true"
       kubernetes.io/tls-acme: "true"
       certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+    paths: []
     path: /
     hosts:
       - guacamole.corp.justin-tech.com
