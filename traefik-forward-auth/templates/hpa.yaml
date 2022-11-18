@@ -3,6 +3,7 @@ apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
   name: {{ include "traefik-forward-auth.fullname" . }}
+  namespace: {{ template "traefik.namespace" . }}
   labels:
     {{- include "traefik-forward-auth.labels" . | nindent 4 }}
 spec:
