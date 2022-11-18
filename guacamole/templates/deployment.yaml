@@ -25,13 +25,13 @@ spec:
           imagePullPolicy: {{ .Values.guacamole.image.pullPolicy }}
           env:
             - name: MYSQL_HOSTNAME
-              value: "{{ .Release.Name }}-mysql"
+              value: "{{ .Values.guacamole.mysql.MYSQL_HOSTNAME }}"
             - name: MYSQL_DATABASE
-              value: "guacamole_db"
+              value: "{{ .Values.guacamole.mysql.MYSQL_DATABASE }}"
             - name: MYSQL_USER
-              value: "root"
+              value: "{{ .Values.guacamole.mysql.MYSQL_USER }}"
             - name: MYSQL_PASSWORD
-              value: "{{ .Values.mysql.mysqlRootPassword }}"
+              value: "{{ .Values.guacamole.mysql.MYSQL_PASSWORD }}"
             - name: MYSQL_PORT
               value: "{{ .Values.guacamole.mysql.MYSQL_PORT }}"
             - name: GUACD_HOSTNAME
@@ -40,8 +40,22 @@ spec:
               value: "{{ .Values.guacd.service.port }}"
             - name: GUACAMOLE_HOME
               value: "/etc/guacamole"
+            - name: OPENID_AUTHORIZATION_ENDPOINT
+              value: "{{ .Values.guacamole.openid.OPENID_AUTHORIZATION_ENDPOINT }}"
+            - name: OPENID_JWKS_ENDPOINT
+              value: "{{ .Values.guacamole.openid.OPENID_JWKS_ENDPOINT }}"
+            - name: OPENID_ISSUER
+              value: "{{ .Values.guacamole.openid.OPENID_ISSUER }}"
+            - name: OPENID_CLIENT_ID
+              value: "{{ .Values.guacamole.openid.OPENID_CLIENT_ID }}"
+            - name: OPENID_REDIRECT_URI
+              value: "{{ .Values.guacamole.openid.OPENID_REDIRECT_URI }}"
+            - name: OPENID_USERNAME_CLAIM_TYPE
+              value: "{{ .Values.guacamole.openid.OPENID_USERNAME_CLAIM_TYPE }}"
             - name: WEBAPP_CONTEXT
               value: "{{ .Values.guacamole.webapp_context }}"
+            - name: TZ
+              value: "{{ .Values.guacamole.TZ }}"
           ports:
             - name: http
               containerPort: 8080
