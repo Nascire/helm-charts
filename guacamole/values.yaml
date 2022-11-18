@@ -20,6 +20,19 @@ guacamole:
   mysql:
     MYSQL_HOSTNAME: guacamole-mysql
     MYSQL_PORT: 3306
+    MYSQL_DATABASE: "guacamole_db"
+    MYSQL_USER: "guacamole_user"
+    MYSQL_PASSWORD: "guacamole_user"
+
+  openid:
+    OPENID_AUTHORIZATION_ENDPOINT: "https://keycloak/realms/realm/protocol/openid-connect/auth"
+    OPENID_JWKS_ENDPOINT: "https://akeycloak/realms/realm/protocol/openid-connect/certs"
+    OPENID_ISSUER: "https://keycloak/realms/Home"
+    OPENID_CLIENT_ID: "guacamole"
+    OPENID_REDIRECT_URI: "https://guacamole/"
+    OPENID_USERNAME_CLAIM_TYPE: "username"
+    
+  TZ: "Europe/Vienna"
 
   ingress:
     enabled: true
