@@ -1,6 +1,7 @@
 {{- if .Values.guacamole.ingress.enabled -}}
 {{- $fullName := include "guacamole.fullname" . -}}
 {{- $ingressPath := .Values.guacamole.ingress.path -}}
+{{- $servicePort := .Values.guacamole.service.port -}}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -36,6 +37,6 @@ spec:
               service:
                 name: {{ $fullName }}
                 port: 
-                  number: {{ .Values.guacamole.service.port }}
+                  number: {{ $servicePort }}
   {{- end }}
 {{- end }}
