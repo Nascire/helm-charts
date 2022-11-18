@@ -1,9 +1,22 @@
 {{- if .Values.guacamole.ingress.enabled -}}
 {{- $fullName := include "guacamole.fullname" . -}}
-{{- $ingressPath := .Values.guacamole.ingress.path -}}
 {{- $servicePort := .Values.guacamole.service.port -}}
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: {{ $fullName }}-strip
+  labels:
+    app.kubernetes.io/name: {{ include "guacamole.name" . }}
+    helm.sh/chart: {{ include "guacamole.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  stripPrefix:
+    prefixes:
+      - "/guacamole"
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
   name: {{ $fullName }}
   labels:
@@ -11,32 +24,17 @@ metadata:
     helm.sh/chart: {{ include "guacamole.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
-{{- with .Values.guacamole.ingress.annotations }}
-  annotations:
-{{ toYaml . | indent 4 }}
-{{- end }}
 spec:
-{{- if .Values.guacamole.ingress.tls }}
-  tls:
-  {{- range .Values.guacamole.ingress.tls }}
-    - hosts:
-      {{- range .hosts }}
-        - {{ . | quote }}
-      {{- end }}
-      secretName: {{ .secretName }}
+  entryPoint:
+  {{- range .Values.guacamole.ingress.entryPoints }}
+  - {{ . }}
   {{- end }}
-{{- end }}
-  rules:
-  {{- range .Values.guacamole.ingress.hosts }}
-    - host: {{ . | quote }}
-      http:
-        paths:
-          - path: {{ $ingressPath }}
-            pathType: Prefix
-            backend:
-              service:
-                name: {{ $fullName }}
-                port: 
-                  number: {{ $servicePort }}
-  {{- end }}
+  routes:
+    - kind: Rule
+      match: {{ .Values.guacamole.ingress.matchRule }}
+      middlewares:
+        - name: {{ $fullName }}-strip
+      services:
+      - name: {{ $fullName }}
+        port: {{ $servicePort }}
 {{- end }}

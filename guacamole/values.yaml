@@ -36,17 +36,9 @@ guacamole:
 
   ingress:
     enabled: true
-    annotations:
-      ingress.kubernetes.io/ssl-redirect: "true"
-      kubernetes.io/tls-acme: "true"
-      certmanager.k8s.io/cluster-issuer: letsencrypt-prod
-    paths: []
-    path: /
-    hosts:
-      - guacamole.corp.justin-tech.com
-    tls:
-    - hosts:
-      - guacamole.corp.justin-tech.com
+    entryPoints:
+      - web
+    matchRule: PathPrefix(`/guacamole`)
 
   resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
