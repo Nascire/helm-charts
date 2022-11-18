@@ -2,20 +2,6 @@
 {{- $fullName := include "guacamole.fullname" . -}}
 {{- $servicePort := .Values.guacamole.service.port -}}
 apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: {{ $fullName }}-strip
-  labels:
-    app.kubernetes.io/name: {{ include "guacamole.name" . }}
-    helm.sh/chart: {{ include "guacamole.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
-spec:
-  replacePathRegex:
-    regex: "(.*)"
-    replacement: /guacamole/$1
----
-apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: {{ $fullName }}
@@ -32,8 +18,6 @@ spec:
   routes:
     - kind: Rule
       match: {{ .Values.guacamole.ingress.matchRule }}
-      middlewares:
-        - name: {{ $fullName }}-strip
       services:
       - name: {{ $fullName }}
         port: {{ $servicePort }}
