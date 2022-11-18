@@ -66,7 +66,7 @@ spec:
               port: http
           readinessProbe:
             httpGet:
-              path: /
+              path: /guacamole
               port: http
           volumeMounts:
             {{- if .Values.guacamole.configurationFiles }}
