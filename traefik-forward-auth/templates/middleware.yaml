@@ -3,6 +3,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
   name: {{ .Values.traefikForwardAuth.middleware.name | default "traefik-forward-auth" }}
+  namespace: {{ template "traefik-forward-auth.namespace" . }}
 spec:
   forwardAuth:
     address: "http://{{ include "traefik-forward-auth.fullname" . }}:{{ .Values.service.port }}"

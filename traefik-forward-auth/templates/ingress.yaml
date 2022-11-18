@@ -9,6 +9,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: {{ $fullName }}
+  namespace: {{ template "traefik-forward-auth.namespace" . }}
   labels:
   {{- include "traefik-forward-auth.labels" . | nindent 4 }}
   {{- if or .Values.ingress.annotations (and .Values.traefikForwardAuth.middleware.enabled .Values.traefikForwardAuth.authHost) }}
