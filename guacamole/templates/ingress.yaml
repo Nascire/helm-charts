@@ -11,9 +11,9 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
-  stripPrefix:
-    prefixes:
-      - "/guacamole"
+  replacePathRegex:
+    regex: "(.*)"
+    replacement: /guacamole/$1
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
