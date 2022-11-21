@@ -30,19 +30,14 @@ spec:
         {{- end }}
     spec:
       securityContext: {{ toYaml .Values.podSecurityContext | nindent 8 }}
-      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
       containers:
       - name: {{ include "gitlab-runner.fullname" . }}
         image: {{ include "gitlab-runner.image" . }}
         imagePullPolicy: {{ default "" .Values.imagePullPolicy | quote }}
-        securityContext: {{ toYaml .Values.securityContext | nindent 10 }}
         {{- include "gitlab-runner.unregisterRunners" . | nindent 8 }}
         command: ["/usr/bin/dumb-init", "--", "/bin/bash", "/configmaps/entrypoint"]
         env:
         {{ include "gitlab-runner.runner-env-vars" . | indent 8 }}
-        ports:
-        - name: {{ .Values.metrics.portName | quote }}
-          containerPort: {{ .Values.metrics.port }}
         volumeMounts:
         - name: etc-gitlab-runner
           mountPath: /home/gitlab-runner/.gitlab-runner
