@@ -10,34 +10,4 @@ metadata:
     heritage: "{{ .Release.Service }}"
 data:
   config.toml: |
-    [[runners]]
-      name = "[HETZNER] Cloud-runner with autoscale"
-      limit = 15
-      url = "*************"
-      token = "*************"
-      executor = "docker+machine"
-      environment = ["COMPOSER_CACHE_DIR=/composer-cache"]
-      [runners.custom_build_dir]
-      [runners.docker]
-        tls_verify = false
-        image = "marcwillmann/codeception"
-        memory = "2048m"
-        privileged = true
-        disable_entrypoint_overwrite = false
-        oom_kill_disable = false
-        disable_cache = false
-        volumes = ["/var/cache:/cache:rw", "/var/run/docker.sock:/var/run/docker.sock"]
-        pull_policy = "if-not-present"
-        shm_size = 536870912
-      [runners.machine]
-        IdleCount = 2
-        IdleTime = 600
-        MachineDriver = "hetzner"
-        MachineName = "runner-%s"
-        MachineOptions = ["hetzner-api-token=*************", "hetzner-image=ubuntu-18.04", "hetzner-server-type=cx21"]
-        OffPeakPeriods = ["* * 0-8,19-23 * * mon-fri *", "* * * * * sat,sun *"]
-        OffPeakTimezone = "Europe/Berlin"
-        OffPeakIdleCount = 1
-        OffPeakIdleTime = 600
-      [runners.custom]
-        run_exec = ""
+    {{ .Values.runners.config }}
