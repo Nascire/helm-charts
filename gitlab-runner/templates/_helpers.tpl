@@ -38,26 +38,10 @@ Define the name of the secret containing the tokens
 {{- end -}}
 
 {{/*
-Define the name of the s3 cache secret
-*/}}
-{{- define "gitlab-runner.cache.secret" -}}
-{{- if .Values.runners.cache.secretName -}}
-{{- .Values.runners.cache.secretName | quote -}}
-{{- end -}}
-{{- end -}}
-
-{{/*
 Template for outputing the gitlabUrl
 */}}
 {{- define "gitlab-runner.gitlabUrl" -}}
 {{- .Values.gitlabUrl | quote -}}
-{{- end -}}
-
-{{/*
-Template runners.cache.s3ServerAddress in order to allow overrides from external charts.
-*/}}
-{{- define "gitlab-runner.cache.s3ServerAddress" }}
-{{- default "" .Values.runners.cache.s3ServerAddress | quote -}}
 {{- end -}}
 
 {{/*
@@ -72,27 +56,6 @@ Define the image, using .Chart.AppVersion and GitLab Runner image as a default v
 {{- $imageTag := default $appVersionImageTag .Values.image.tag -}}
 {{- printf "%s/%s:%s" .Values.image.registry .Values.image.image $imageTag }}
 {{- end -}}
-{{- end -}}
-
-{{/*
-Define the server session timeout, using 1800 as a default value
-*/}}
-{{- define "gitlab-runner.server-session-timeout" }}
-{{-   default 1800 .Values.sessionServer.timeout }}
-{{- end -}}
-
-{{/*
-Define the server session internal port, using 9000 as a default value
-*/}}
-{{- define "gitlab-runner.server-session-external-port" }}
-{{-   default 9000 .Values.sessionServer.externalPort }}
-{{- end -}}
-
-{{/*
-Define the server session external port, using 8093 as a default value
-*/}}
-{{- define "gitlab-runner.server-session-internal-port" }}
-{{-   default 8093 .Values.sessionServer.internalPort }}
 {{- end -}}
 
 {{/*
