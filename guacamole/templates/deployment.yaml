@@ -62,11 +62,11 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /guacamole/
+              path: /
               port: http
           readinessProbe:
             httpGet:
-              path: /guacamole/
+              path: /
               port: http
           volumeMounts:
             {{- if .Values.guacamole.configurationFiles }}
