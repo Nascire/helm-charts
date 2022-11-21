@@ -31,20 +31,6 @@ Create chart name and version as used by the chart label.
 {{- end -}}
 
 {{/*
-Define the image, using .Chart.AppVersion and GitLab Runner image as a default value
-*/}}
-{{- define "gitlab-runner.image" }}
-{{- if kindIs "string" .Values.image -}}
-{{- .Values.image }}
-{{- else -}}
-{{- $appVersion := ternary "bleeding" (print "v" .Chart.AppVersion) (eq .Chart.AppVersion "bleeding") -}}
-{{- $appVersionImageTag := printf "alpine-%s" $appVersion -}}
-{{- $imageTag := default $appVersionImageTag .Values.image.tag -}}
-{{- printf "%s/%s:%s" .Values.image.registry .Values.image.image $imageTag }}
-{{- end -}}
-{{- end -}}
-
-{{/*
 Unregister runners on pod stop
 */}}
 {{- define "gitlab-runner.unregisterRunners" -}}
