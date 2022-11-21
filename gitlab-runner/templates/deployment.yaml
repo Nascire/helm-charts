@@ -31,7 +31,6 @@ spec:
     spec:
       securityContext: {{ toYaml .Values.podSecurityContext | nindent 8 }}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
-      serviceAccountName: {{ if .Values.rbac.create }}{{ include "gitlab-runner.fullname" . }}{{ else }}"{{ .Values.rbac.serviceAccountName }}"{{ end }}
       containers:
       - name: {{ include "gitlab-runner.fullname" . }}
         image: {{ include "gitlab-runner.image" . }}
