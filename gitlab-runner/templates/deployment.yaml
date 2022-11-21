@@ -27,7 +27,6 @@ spec:
         image: {{ .Values.image.image }}
         imagePullPolicy: {{ default "" .Values.imagePullPolicy | quote }}
         {{- include "gitlab-runner.unregisterRunners" . | nindent 8 }}
-        command: ["/usr/bin/dumb-init", "--", "/bin/bash", "/configmaps/entrypoint"]
         env:
         {{ include "gitlab-runner.runner-env-vars" . | indent 8 }}
         volumeMounts:
