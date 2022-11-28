@@ -6,6 +6,7 @@ metadata:
     io.kompose.service: grocy-claim0
   name: grocy-claim0
 spec:
+  storageClassName: nfs-client
   accessModes:
     - ReadWriteOnce
   resources:
