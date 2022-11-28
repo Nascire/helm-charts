@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: grocy
+  name: grocy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: grocy
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.service: grocy
+    spec:
+      containers:
+        - env:
+            - name: PGID
+              value: "1000"
+            - name: PUID
+              value: "1000"
+            - name: TZ
+              value: Europe/Vienna
+          image: lscr.io/linuxserver/grocy:latest
+          name: grocy
+          ports:
+            - containerPort: 80
+          resources: {}
+          volumeMounts:
+            - mountPath: /config
+              name: grocy-claim0
+      restartPolicy: Always
+      volumes:
+        - name: grocy-claim0
+          persistentVolumeClaim:
+            claimName: grocy-claim0
+status: {}
