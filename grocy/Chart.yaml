@@ -1,6 +1,6 @@
 name: grocy-helm
 description: A generated Helm Chart for grocy-helm from Skippbox Kompose
-version: 0.0.6
+version: 0.0.7
 apiVersion: v1
 keywords:
   - grocy-helm
