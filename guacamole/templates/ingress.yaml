@@ -1,7 +1,7 @@
 {{- if .Values.guacamole.ingress.enabled -}}
 {{- $fullName := include "guacamole.fullname" . -}}
 {{- $ingressPath := .Values.guacamole.ingress.path -}}
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ $fullName }}
@@ -34,9 +34,12 @@ spec:
           {{- "\n" }}{{ tpl (toYaml $.Values.guacamole.ingress.paths | indent 10) $ }}
         {{- else }}
           - path: {{ $ingressPath }}
+            pathType: Prefix
             backend:
-              serviceName: {{ $fullName }}
-              servicePort: http
+              service:
+                name: {{ $fullName }}
+                port: 
+                  number: 80
         {{- end }}
   {{- end }}
 {{- end }}
