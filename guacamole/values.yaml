@@ -24,9 +24,7 @@ guacamole:
   ingress:
     enabled: true
     annotations:
-      ingress.kubernetes.io/ssl-redirect: "true"
-      kubernetes.io/tls-acme: "true"
-      certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+      nginx.ingress.kubernetes.io/proxy-buffering: "off"
     paths: []
     #  - backend:
     #      serviceName: ssl-redirect
@@ -36,7 +34,6 @@ guacamole:
     #        {{ include "guacamole.fullname" . }}
     #      # Don't use string here, use only integer value!
     #      servicePort: 443
-      nginx.ingress.kubernetes.io/proxy-buffering: "off"
     path: /
     hosts:
       - guacamole.corp.justin-tech.com
