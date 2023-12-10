@@ -1,2 +1,9 @@
+mysql:
+  MYSQL_HOSTNAME: mysql
+  #MYSQL_PORT: 3306
+  #MYSQL_DATABASE: "guacamole_db"
+  MYSQL_USER: "paperless"
+  MYSQL_PASSWORD: "changeme"
+    
 ingress:
   annotations: {}
