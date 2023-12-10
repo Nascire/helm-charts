@@ -40,11 +40,11 @@ spec:
             - name: PAPERLESS_URL
               value: {{ .Values.paperless.url }}
             - name: PAPERLESS_ENABLE_HTTP_REMOTE_USER
-              value: {{ .Values.paperless.enable_remote_user }}
+              value: "{{ .Values.paperless.enable_remote_user }}"
             - name: PAPERLESS_HTTP_REMOTE_USER_HEADER_NAME
               value: {{ .Values.paperless.header_name }}
             - name: PAPERLESS_USE_X_FORWARD_HOST
-              value: {{ .Values.paperless.enable_forward_host }}
+              value: "{{ .Values.paperless.enable_forward_host }}"
             - name: PAPERLESS_OCR_LANGUAGE
               value: {{ .Values.paperless.ocr_language }}
             - name: PAPERLESS_TIME_ZONE
