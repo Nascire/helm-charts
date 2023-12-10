@@ -4,6 +4,14 @@ mysql:
   #MYSQL_DATABASE: "guacamole_db"
   MYSQL_USER: "paperless"
   MYSQL_PASSWORD: "changeme"
-    
+
+paperless:
+  url: http://localhost
+  enable_remote_user: False
+  header_name: HTTP_REMOTE_USER
+  enable_forward:host: False
+  ocr_language: eng
+  timezone: UTC
+
 ingress:
   annotations: {}
