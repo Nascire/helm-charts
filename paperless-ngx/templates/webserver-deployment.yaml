@@ -24,11 +24,11 @@ spec:
             - name: PAPERLESS_DBHOST
               value: {{ .Values.mysql.MYSQL_HOSTNAME }}
             - name: PAPERLESS_DBPASS
-              value: paperless
+              value: {{ .Values.mysql.MYSQL_PASSWORD }}
             - name: PAPERLESS_DBPORT
               value: "3306"
             - name: PAPERLESS_DBUSER
-              value: paperless
+              value: {{ .Values.mysql.MYSQL_USER }}
             - name: PAPERLESS_REDIS
               value: redis://broker:6379
             - name: PAPERLESS_TIKA_ENABLED
