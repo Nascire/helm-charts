@@ -49,7 +49,6 @@ spec:
               value: {{ .Values.paperless.ocr_language }}
             - name: PAPERLESS_TIME_ZONE
               value: {{ .Values.paperless.timezone }}
-
           image: ghcr.io/paperless-ngx/paperless-ngx:latest
           livenessProbe:
             exec:
