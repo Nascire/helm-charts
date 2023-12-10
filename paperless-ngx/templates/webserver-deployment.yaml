@@ -22,7 +22,7 @@ spec:
             - name: PAPERLESS_DBENGINE
               value: mariadb
             - name: PAPERLESS_DBHOST
-              value: db
+              value: {{ .Values.mysql.MYSQL_HOSTNAME }}
             - name: PAPERLESS_DBPASS
               value: paperless
             - name: PAPERLESS_DBPORT
