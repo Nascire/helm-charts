@@ -22,7 +22,6 @@ spec:
           name: broker
           ports:
             - containerPort: 6379
-              hostPort: 6379
               protocol: TCP
           resources: {}
           volumeMounts:

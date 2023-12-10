@@ -21,7 +21,6 @@ spec:
           name: tika
           ports:
             - containerPort: 9998
-              hostPort: 9998
               protocol: TCP
           resources: {}
       restartPolicy: Always
