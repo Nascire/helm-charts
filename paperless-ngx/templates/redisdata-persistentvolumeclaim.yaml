@@ -6,6 +6,7 @@ metadata:
     io.kompose.service: redisdata
   name: redisdata
 spec:
+  storageClassName: nfs-client
   accessModes:
     - ReadWriteOnce
   resources:

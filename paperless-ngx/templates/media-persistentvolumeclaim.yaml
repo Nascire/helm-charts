@@ -6,6 +6,7 @@ metadata:
     io.kompose.service: media
   name: media
 spec:
+  storageClassName: nfs-client
   accessModes:
     - ReadWriteOnce
   resources:

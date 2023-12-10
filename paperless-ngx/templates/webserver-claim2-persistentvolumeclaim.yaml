@@ -6,6 +6,7 @@ metadata:
     io.kompose.service: webserver-claim2
   name: webserver-claim2
 spec:
+  storageClassName: nfs-client
   accessModes:
     - ReadWriteOnce
   resources:
