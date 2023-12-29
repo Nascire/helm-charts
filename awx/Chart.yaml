@@ -1,6 +1,6 @@
 name: awx-helm
 description: A generated Helm Chart for awx-helm 
-version: 0.0.1
+version: 0.0.2
 apiVersion: v1
 keywords:
   - awx-helm
