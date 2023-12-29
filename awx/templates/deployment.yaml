@@ -3,7 +3,9 @@ kind: AWX
 metadata:
   name: awx
 spec:
-  service_type: clusterip
+  service_type: ClusterIP
+  ingress_type: ingress
+  hostname: awx.gorill.cloud
   projects_persistence: true
   projects_storage_access_mode: ReadWriteOnce
   web_extra_volume_mounts: |
