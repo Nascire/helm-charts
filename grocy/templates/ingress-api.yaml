@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: grocy-ingress-api
   annotations:
-    {{- with .Values.ingress-api.annotations }}
+    {{- with .Values.ingressapi.annotations }}
     {{- toYaml . | nindent 4 }}
     {{- end }}    
 spec:
