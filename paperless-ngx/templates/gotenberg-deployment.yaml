@@ -21,7 +21,7 @@ spec:
             - gotenberg
             - --chromium-disable-javascript=true
             - --chromium-allow-list=file:///tmp/.*
-          image: docker.io/gotenberg/gotenberg:7.10
+          image: {{ .Values.images.gotenberg }}
           name: gotenberg
           ports:
             - containerPort: 3000

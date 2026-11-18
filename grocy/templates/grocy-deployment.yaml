@@ -24,7 +24,7 @@ spec:
               value: "1000"
             - name: TZ
               value: Europe/Vienna
-          image: lscr.io/linuxserver/grocy:latest
+          image: lscr.io/linuxserver/grocy:4.7.1
           name: grocy
           ports:
             - containerPort: 80

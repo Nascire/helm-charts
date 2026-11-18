@@ -20,9 +20,9 @@ spec:
         persistentVolumeClaim:
           claimName: heimdall-pvc
       containers:
-      - image: ghcr.io/linuxserver/heimdall:latest
+      - image: ghcr.io/linuxserver/heimdall:2.8.4
         name: heimdall
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         env:
         - name: PGID
           value: "1000"
