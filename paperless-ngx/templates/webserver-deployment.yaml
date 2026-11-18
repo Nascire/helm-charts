@@ -19,6 +19,11 @@ spec:
     spec:
       containers:
         - env:
+            - name: PAPERLESS_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: paperless-secret
+                  key: secret-key
             - name: PAPERLESS_DBENGINE
               value: mariadb
             - name: PAPERLESS_DBHOST

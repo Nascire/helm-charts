@@ -17,7 +17,7 @@ spec:
         io.kompose.service: tika
     spec:
       containers:
-        - image: ghcr.io/paperless-ngx/tika:latest
+        - image: docker.io/apache/tika:latest
           name: tika
           ports:
             - containerPort: 9998
