@@ -18,6 +18,6 @@ ingress:
 # Feste Versionen (Stand 18.11.2026). paperless v3 nur ueber 2.20.15 erreichbar.
 images:
   paperless: ghcr.io/paperless-ngx/paperless-ngx:2.20.15
-  broker: docker.io/valkey/valkey:9-alpine
+  broker: docker.io/library/redis:8.10-alpine
   gotenberg: docker.io/gotenberg/gotenberg:8.38
   tika: docker.io/apache/tika:3.3.1.0

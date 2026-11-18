@@ -55,6 +55,14 @@ spec:
             - name: PAPERLESS_TIME_ZONE
               value: {{ .Values.paperless.timezone }}
           image: {{ .Values.images.paperless }}
+          startupProbe:
+            exec:
+              command:
+                - curl
+                - -f
+                - http://localhost:8000
+            failureThreshold: 120
+            periodSeconds: 15
           livenessProbe:
             exec:
               command:
